@@ -172,6 +172,19 @@ body::after {
   100% { transform: translateX(-50%); }
 }
 
+/* ── NAV CARD FLICKER ── */
+@keyframes neon-flicker {
+  0%, 17%, 19%, 22%, 51%, 54%, 100% { opacity: 1; }
+  18%          { opacity: 0.25; }
+  20%, 21%     { opacity: 0.7;  }
+  52%, 53%     { opacity: 0;    }
+}
+
+.nav-card:nth-child(1) .nav-card-label { animation: neon-flicker 9s  infinite; animation-delay: 0s;   }
+.nav-card:nth-child(2) .nav-card-label { animation: neon-flicker 11s infinite; animation-delay: 3.2s; }
+.nav-card:nth-child(3) .nav-card-label { animation: neon-flicker 8s  infinite; animation-delay: 1.7s; }
+.nav-card:nth-child(4) .nav-card-label { animation: neon-flicker 13s infinite; animation-delay: 5.1s; }
+
 /* ── NAV CARDS (landing page) ── */
 .nav-grid {
   display: grid;
@@ -706,11 +719,11 @@ nav a:hover, nav a.active { color: var(--accent); }
 /* ── VIDEO PLAYER ── */
 .video-section { border-bottom: 1px solid var(--border); }
 
-/* Adaptive stage — never crops, handles vertical AND horizontal */
+/* Adaptive stage — never crops vertical or horizontal */
 .video-stage {
   position: relative;
   width: 100%;
-  height: 85vh;
+  height: min(72vh, 640px);
   background: #000;
   display: flex;
   align-items: center;
@@ -719,9 +732,12 @@ nav a:hover, nav a.active { color: var(--accent); }
 }
 
 #main-video {
-  width: 100%;
+  /* Fill height, auto width — vertical videos stay tall and narrow,
+     horizontal fill full width. object-fit: contain never crops. */
   height: 100%;
-  object-fit: contain;  /* key: never crop */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
   display: block;
   background: #000;
 }
@@ -906,7 +922,7 @@ footer p {
   .thumb-preview { display: none; } /* hide hover preview on touch */
 
   /* Video */
-  .video-stage { height: 75vh; }
+  .video-stage { height: min(70vh, 520px); }
   .video-thumb { flex: 0 0 100px; }
   .video-title-display { font-size: 1.2rem; }
   .video-mute-btn { width: 40px; height: 40px; font-size: 1rem; }
