@@ -336,15 +336,50 @@ nav a:hover, nav a.active { color: var(--accent); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── GLITCH ── */
+/* ── DIGITAL GLITCH LOOP ── */
 .swoop-title.glitching .letter {
-  animation: glitch-letter 0.35s steps(3) forwards !important;
+  animation: digital-glitch 1.05s steps(1) forwards !important;
 }
-@keyframes glitch-letter {
-  0%   { text-shadow:  3px 0 #ff00de, -3px 0 #00ffaa; transform: translateX( 3px) skewX( 1deg); }
-  33%  { text-shadow: -3px 0 #ff00de,  3px 0 #00ffaa; transform: translateX(-3px) skewX(-2deg); }
-  66%  { text-shadow:  3px 2px #ff00de, -3px -2px #00ffaa; transform: translateX(2px); }
-  100% { text-shadow: none; transform: translateX(0) skewX(0); }
+
+@keyframes digital-glitch {
+  /* ── clean ── */
+  0%   { text-shadow: none; transform: none; opacity: 1; }
+
+  /* ── wave 1: RGB split + skew ── */
+  7%   { text-shadow:  5px 0 0 #ff00cc, -5px 0 0 #00ffaa; transform: translateX(-3px) skewX(2deg);  opacity: 1; }
+  9%   { text-shadow: -6px 0 0 #ff00cc,  6px 0 0 #00ffaa; transform: translateX( 4px) skewX(-1deg); opacity: 1; }
+
+  /* ── dropout ── */
+  11%  { text-shadow: none; transform: translateX(2px); opacity: 0.08; }
+  13%  { text-shadow:  8px 0 0 #ff00cc, -8px 0 0 #00ffaa; transform: translateX(-5px) scaleY(0.96); opacity: 1; }
+  15%  { text-shadow: none; transform: none; opacity: 1; }
+
+  /* ── clean pause ── */
+  22%  { text-shadow: none; transform: none; opacity: 1; }
+
+  /* ── wave 2: heavy hit ── */
+  28%  { text-shadow:  10px 1px 0 rgba(255,0,204,0.85), -10px -1px 0 rgba(0,255,170,0.85); transform: translateX(-7px) skewX(-3deg); opacity: 0.75; }
+  30%  { text-shadow: -4px 0 0 #ff00cc, 4px 0 0 #00ffaa; transform: translateX( 4px) skewX( 1deg); opacity: 1; }
+  32%  { text-shadow: none; transform: translateX(1px); }
+  34%  { text-shadow: none; transform: none; opacity: 1; }
+
+  /* ── micro stutter ── */
+  40%  { text-shadow:  3px 0 0 #ff00cc, -3px 0 0 #00ffaa; transform: translateX(-2px); }
+  41%  { text-shadow: none; transform: none; }
+  43%  { opacity: 0.4; transform: translateX(3px) scaleX(1.01); }
+  44%  { opacity: 1; transform: none; }
+
+  /* ── long clean ── */
+  80%  { text-shadow: none; transform: none; opacity: 1; }
+
+  /* ── final flash ── */
+  84%  { text-shadow:  6px 0 0 #ff00cc, -6px 0 0 #00ffaa; transform: translateX(-4px) skewX(1deg); opacity: 0.7; }
+  86%  { text-shadow: none; transform: translateX(3px); opacity: 1; }
+  88%  { text-shadow:  3px 0 0 #ff00cc, -3px 0 0 #00ffaa; transform: none; }
+  90%  { text-shadow: none; opacity: 0.2; }
+  92%  { opacity: 1; text-shadow: none; transform: none; }
+
+  100% { text-shadow: none; transform: none; opacity: 1; }
 }
 
 /* ── KEN BURNS ── */

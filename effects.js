@@ -16,15 +16,15 @@ document.addEventListener('mousemove', e => {
   setTimeout(() => p.remove(), 700);
 });
 
-// ── GLITCH (hero only) ────────────────────────────────
+// ── DIGITAL GLITCH LOOP (hero only) ──────────────────
 function triggerGlitch() {
   const title = document.querySelector('.swoop-title');
   if (!title) return;
   title.classList.add('glitching');
-  setTimeout(() => title.classList.remove('glitching'), 350);
+  setTimeout(() => title.classList.remove('glitching'), 1100);
 }
 setInterval(triggerGlitch, 8000);
-setTimeout(triggerGlitch, 9000); // first fire after letters land
+setTimeout(triggerGlitch, 2500); // first fire after letters land
 
 // ── 3D CARD TILT ──────────────────────────────────────
 document.querySelectorAll('.print-card').forEach(card => {
