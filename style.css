@@ -21,6 +21,150 @@ body {
   cursor: url('cursor.svg') 18 18, crosshair;
 }
 
+/* ── FILM GRAIN ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  animation: grain-shift 0.18s steps(1) infinite;
+}
+@keyframes grain-shift {
+  0%   { transform: translate(0,0); }
+  10%  { transform: translate(-5%,-10%); }
+  20%  { transform: translate(-15%, 5%); }
+  30%  { transform: translate( 7%,-25%); }
+  40%  { transform: translate(20%, 25%); }
+  50%  { transform: translate(-25%,10%); }
+  60%  { transform: translate(15%,  5%); }
+  70%  { transform: translate(0%,  15%); }
+  80%  { transform: translate(25%, 35%); }
+  90%  { transform: translate(-10%,10%); }
+  100% { transform: translate(0,0); }
+}
+
+/* ── CURSOR TRAIL ── */
+.trail-particle {
+  position: fixed;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent);
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%,-50%) scale(1);
+  animation: trail-fade 0.7s ease-out forwards;
+}
+@keyframes trail-fade {
+  0%   { opacity: 0.9; transform: translate(-50%,-50%) scale(1); }
+  100% { opacity: 0;   transform: translate(-50%,-50%) scale(0.1); }
+}
+
+/* ── TICKER ── */
+.ticker-wrap {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  padding: 0.75rem 0;
+  white-space: nowrap;
+}
+.ticker-track {
+  display: inline-flex;
+  animation: ticker-scroll 28s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  padding: 0 2rem;
+}
+.ticker-item span { color: var(--accent); margin: 0 0.5rem; }
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── NAV CARDS (landing page) ── */
+.nav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 3px;
+  background: var(--border);
+}
+.nav-card {
+  position: relative;
+  height: 42vw;
+  max-height: 520px;
+  min-height: 240px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+}
+.nav-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.35);
+  transition: filter 0.5s ease, transform 0.6s ease;
+}
+.nav-card:hover .nav-card-bg {
+  filter: brightness(0.55);
+  transform: scale(1.04);
+}
+.nav-card-label {
+  position: relative;
+  z-index: 2;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  letter-spacing: 0.04em;
+  padding: 1.5rem 2rem;
+  -webkit-text-stroke: 1.5px var(--text);
+  color: transparent;
+  transition: color 0.35s, -webkit-text-stroke 0.35s;
+  line-height: 1;
+}
+.nav-card:hover .nav-card-label {
+  color: var(--accent);
+  -webkit-text-stroke: 0px;
+}
+.nav-card-arrow {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 2;
+}
+.nav-card:hover .nav-card-arrow { opacity: 1; transform: translateX(0); }
+
+/* ── SECTION REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.from-right-reveal {
+  transform: translateX(60px);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* ── HEADER ── */
 header {
   position: sticky;
@@ -58,7 +202,7 @@ nav a {
   text-transform: uppercase;
   transition: color 0.2s;
 }
-nav a:hover { color: var(--accent); }
+nav a:hover, nav a.active { color: var(--accent); }
 
 /* ── HERO ── */
 .hero {
@@ -96,6 +240,23 @@ nav a:hover { color: var(--accent); }
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── GLITCH ── */
+.swoop-title.glitching .letter {
+  animation: glitch-letter 0.35s steps(3) forwards !important;
+}
+@keyframes glitch-letter {
+  0%   { text-shadow:  3px 0 #ff00de, -3px 0 #00ffaa; transform: translateX( 3px) skewX( 1deg); }
+  33%  { text-shadow: -3px 0 #ff00de,  3px 0 #00ffaa; transform: translateX(-3px) skewX(-2deg); }
+  66%  { text-shadow:  3px 2px #ff00de, -3px -2px #00ffaa; transform: translateX(2px); }
+  100% { text-shadow: none; transform: translateX(0) skewX(0); }
+}
+
+/* ── KEN BURNS ── */
+@keyframes kenburns {
+  0%   { transform: scale(1)    translate(0, 0); }
+  100% { transform: scale(1.07) translate(-1.5%, -1%); }
 }
 
 /* ── LETTER ANIMATIONS ── */
@@ -190,6 +351,8 @@ nav a:hover { color: var(--accent); }
   object-fit: cover;
   display: block;
   transition: opacity 0.18s ease;
+  animation: kenburns 9s ease-out infinite alternate;
+  transform-origin: center center;
 }
 
 /* Controls overlay */

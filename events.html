@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events — Sure Shot Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="index.html">SURE SHOT<span>.</span></a>
+    <nav>
+      <a href="concerts.html">Concerts</a>
+      <a href="events.html" class="active">Events</a>
+      <a href="toys.html">Toys</a>
+      <a href="prints.html">Prints</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <section class="player reveal" id="events">
+    <div class="player-label">EVENTS</div>
+    <div class="player-stage">
+      <img class="player-main" src="ig/events/01_miami_editorial.jpg" alt="">
+      <div class="player-ui">
+        <button class="p-btn p-prev">&#x2039;</button>
+        <span class="p-counter">01 <em>/</em> 06</span>
+        <button class="p-btn p-next">&#x203A;</button>
+      </div>
+    </div>
+    <div class="player-thumbs">
+      <div class="thumb active" data-src="ig/events/01_miami_editorial.jpg"><img src="ig/events/01_miami_editorial.jpg" alt=""></div>
+      <div class="thumb"        data-src="ig/events/02_brooklyn_bw.jpg">    <img src="ig/events/02_brooklyn_bw.jpg"     alt=""></div>
+      <div class="thumb"        data-src="ig/events/03_djcrew.jpg">          <img src="ig/events/03_djcrew.jpg"          alt=""></div>
+      <div class="thumb"        data-src="ig/events/04_filmset.jpg">         <img src="ig/events/04_filmset.jpg"         alt=""></div>
+      <div class="thumb"        data-src="ig/events/05_miami_night.jpg">     <img src="ig/events/05_miami_night.jpg"     alt=""></div>
+      <div class="thumb"        data-src="ig/events/06_keybiscayne.jpg">     <img src="ig/events/06_keybiscayne.jpg"     alt=""></div>
+    </div>
+  </section>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item">EVENTS <span>&bull;</span></span>
+      <span class="ticker-item">STREET PHOTOGRAPHY <span>&bull;</span></span>
+      <span class="ticker-item">MIAMI <span>&bull;</span></span>
+      <span class="ticker-item">BROOKLYN <span>&bull;</span></span>
+      <span class="ticker-item">SURE SHOT STUDIO <span>&bull;</span></span>
+      <span class="ticker-item">EDITORIAL <span>&bull;</span></span>
+      <span class="ticker-item">EVENTS <span>&bull;</span></span>
+      <span class="ticker-item">STREET PHOTOGRAPHY <span>&bull;</span></span>
+      <span class="ticker-item">MIAMI <span>&bull;</span></span>
+      <span class="ticker-item">BROOKLYN <span>&bull;</span></span>
+      <span class="ticker-item">SURE SHOT STUDIO <span>&bull;</span></span>
+      <span class="ticker-item">EDITORIAL <span>&bull;</span></span>
+    </div>
+  </div>
+
+  <footer>
+    <a class="logo" href="index.html">SURE SHOT<span>.</span></a>
+    <p>&copy; 2026 Sure Shot Studio LLC</p>
+  </footer>
+
+  <script src="effects.js"></script>
+  <script>
+    const player = document.querySelector('.player');
+    const mainImg = player.querySelector('.player-main');
+    const thumbs  = Array.from(player.querySelectorAll('.thumb'));
+    const counter = player.querySelector('.p-counter');
+    let current = 0;
+
+    function goTo(i) {
+      current = (i + thumbs.length) % thumbs.length;
+      mainImg.style.opacity = '0';
+      setTimeout(() => { mainImg.src = thumbs[current].dataset.src; mainImg.style.opacity = '1'; }, 180);
+      thumbs.forEach((t, idx) => t.classList.toggle('active', idx === current));
+      counter.innerHTML = String(current+1).padStart(2,'0') + ' <em>/</em> 06';
+    }
+    player.querySelector('.p-next').addEventListener('click', () => goTo(current + 1));
+    player.querySelector('.p-prev').addEventListener('click', () => goTo(current - 1));
+    thumbs.forEach((t, i) => t.addEventListener('click', () => goTo(i)));
+  </script>
+</body>
+</html>
