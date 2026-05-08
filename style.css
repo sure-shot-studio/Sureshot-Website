@@ -206,13 +206,14 @@ body::after {
   position: relative;
   z-index: 2;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 8vw, 7rem);
-  letter-spacing: 0.04em;
-  padding: 1.5rem 2rem;
+  font-size: clamp(1.8rem, 5.5vw, 7rem);
+  letter-spacing: 0.02em;
+  padding: 1.25rem 1.25rem;
   -webkit-text-stroke: 1.5px var(--text);
   color: transparent;
   transition: color 0.35s, -webkit-text-stroke 0.35s;
   line-height: 1;
+  white-space: nowrap;
 }
 .nav-card:hover .nav-card-label {
   color: var(--accent);
