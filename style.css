@@ -269,6 +269,189 @@ nav a:hover { color: var(--accent); }
   background: var(--accent);
 }
 
+/* ── PRINTS ── */
+.prints-section {
+  padding: 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.85;
+  -webkit-text-stroke: 2px var(--text);
+  color: transparent;
+  margin-bottom: 1rem;
+  transition: color 0.4s, -webkit-text-stroke 0.4s;
+}
+.prints-section:hover .section-label,
+.about-section:hover .section-label {
+  color: var(--text);
+  -webkit-text-stroke: 0px;
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 3rem;
+  max-width: 500px;
+}
+
+.prints-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+}
+
+.print-card {
+  border: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: border-color 0.25s;
+  background: var(--surface);
+}
+.print-card:hover { border-color: var(--muted); }
+.print-card.featured { border-color: var(--accent); }
+
+.print-badge {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.3rem 0.6rem;
+}
+
+.print-size {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--text);
+}
+.print-size span { color: var(--accent); }
+
+.print-unit {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.print-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.print-specs {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.print-specs li {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.print-specs li:last-child { border-bottom: none; }
+
+.print-btn {
+  display: block;
+  text-align: center;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.75rem;
+  transition: background 0.2s, color 0.2s;
+}
+.print-btn:hover { background: var(--accent); color: #fff; }
+
+.prints-note {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.prints-note a { color: var(--accent); text-decoration: none; }
+.prints-note a:hover { text-decoration: underline; }
+
+/* ── ABOUT ── */
+.about-section {
+  padding: 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1000px;
+}
+
+.about-text h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.9;
+  margin-bottom: 1.5rem;
+}
+.about-text h2 span { color: var(--accent); }
+
+.about-text p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.about-contact h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.contact-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, color 0.2s;
+}
+.contact-item:hover { border-color: var(--accent); color: var(--accent); }
+
+.contact-icon {
+  font-size: 1rem;
+  color: var(--accent);
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 800px) {
+  .prints-grid { grid-template-columns: 1fr; max-width: 360px; }
+  .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
 /* ── FOOTER ── */
 footer {
   padding: 3rem 2.5rem;
