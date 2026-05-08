@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Videos — Sure Shot Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg style="display:none"><defs>
+  <filter id="distress" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="4" seed="5" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+  <header>
+    <a class="logo" href="index.html">
+      <img src="logo-mark.svg" alt="" class="logo-mark">
+      SURE SHOT<span>.</span>
+    </a>
+    <nav>
+      <a href="concerts.html">Concerts</a>
+      <a href="events.html">Events</a>
+      <a href="toys.html">Toys</a>
+      <a href="prints.html">Prints</a>
+      <a href="videos.html" class="active">AI</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <section class="video-section reveal">
+    <div class="player-label distressed">AI</div>
+
+    <div class="video-stage">
+      <video id="main-video"
+        src="ig/videos/01_ai_photos.mp4"
+        muted autoplay loop playsinline
+        preload="auto">
+      </video>
+      <div class="video-overlay">
+        <button class="video-mute-btn" id="mute-btn" title="Toggle sound">
+          <span id="mute-icon">&#128263;</span>
+        </button>
+        <div class="video-title-display" id="video-title">Photos Fueled by AI</div>
+        <div class="video-nav">
+          <button class="p-btn p-prev" id="v-prev">&#x2039;</button>
+          <span class="p-counter"><span id="v-current">01</span> <em>/</em> 11</span>
+          <button class="p-btn p-next" id="v-next">&#x203A;</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-thumbs-list" id="video-thumbs">
+
+      <div class="video-thumb active" data-src="ig/videos/01_ai_photos.mp4"  data-title="Photos Fueled by AI">
+        <video src="ig/videos/01_ai_photos.mp4"  preload="metadata" muted></video>
+        <span>Photos Fueled by AI</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/02_ai_twist.mp4"    data-title="AI Twist">
+        <video src="ig/videos/02_ai_twist.mp4"    preload="metadata" muted></video>
+        <span>AI Twist</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/03_ai_workflow.mp4" data-title="The Workflow">
+        <video src="ig/videos/03_ai_workflow.mp4" preload="metadata" muted></video>
+        <span>The Workflow</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/04_toys_life_1.mp4" data-title="Toys Come to Life">
+        <video src="ig/videos/04_toys_life_1.mp4" preload="metadata" muted></video>
+        <span>Toys Come to Life</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/05_toys_life_2.mp4" data-title="Toys Come to Life II">
+        <video src="ig/videos/05_toys_life_2.mp4" preload="metadata" muted></video>
+        <span>Toys Come to Life II</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/06_collection.mp4"  data-title="Collection to Life">
+        <video src="ig/videos/06_collection.mp4"  preload="metadata" muted></video>
+        <span>Collection to Life</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/07_ashly.mp4"       data-title="Concept">
+        <video src="ig/videos/07_ashly.mp4"       preload="metadata" muted></video>
+        <span>Concept</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/08_llcoolj.mp4"     data-title="LL Cool J — Radio">
+        <video src="ig/videos/08_llcoolj.mp4"     preload="metadata" muted></video>
+        <span>LL Cool J — Radio</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/09_redman.mp4"      data-title="Redman — Muddy Waters">
+        <video src="ig/videos/09_redman.mp4"      preload="metadata" muted></video>
+        <span>Redman — Muddy Waters</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/10_mia_kala.mp4"    data-title="M.I.A. — Kala">
+        <video src="ig/videos/10_mia_kala.mp4"    preload="metadata" muted></video>
+        <span>M.I.A. — Kala</span>
+      </div>
+      <div class="video-thumb" data-src="ig/videos/11_pinata.mp4"      data-title="Gibbs &times; Madlib — Pi&ntilde;ata">
+        <video src="ig/videos/11_pinata.mp4"      preload="metadata" muted></video>
+        <span>Gibbs &times; Madlib — Pi&ntilde;ata</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item">AI VIDEOS <span>&bull;</span></span>
+      <span class="ticker-item">SURE SHOT STUDIO <span>&bull;</span></span>
+      <span class="ticker-item">MIAMI <span>&bull;</span></span>
+      <span class="ticker-item">AI GENERATED <span>&bull;</span></span>
+      <span class="ticker-item">PHOTO ANIMATION <span>&bull;</span></span>
+      <span class="ticker-item">HIP-HOP <span>&bull;</span></span>
+      <span class="ticker-item">AI VIDEOS <span>&bull;</span></span>
+      <span class="ticker-item">SURE SHOT STUDIO <span>&bull;</span></span>
+      <span class="ticker-item">MIAMI <span>&bull;</span></span>
+      <span class="ticker-item">AI GENERATED <span>&bull;</span></span>
+      <span class="ticker-item">PHOTO ANIMATION <span>&bull;</span></span>
+      <span class="ticker-item">HIP-HOP <span>&bull;</span></span>
+    </div>
+  </div>
+
+  <footer>
+    <a class="logo" href="index.html"><img src="logo-mark.svg" alt="" class="logo-mark"> SURE SHOT<span>.</span></a>
+    <p>&copy; 2026 Sure Shot Studio LLC</p>
+  </footer>
+
+  <script src="effects.js"></script>
+  <script>
+    const mainVideo   = document.getElementById('main-video');
+    const titleDisplay = document.getElementById('video-title');
+    const currentNum  = document.getElementById('v-current');
+    const muteBtn     = document.getElementById('mute-btn');
+    const muteIcon    = document.getElementById('mute-icon');
+    const thumbs      = Array.from(document.querySelectorAll('.video-thumb'));
+    let current = 0;
+
+    function goTo(i) {
+      current = (i + thumbs.length) % thumbs.length;
+      const t = thumbs[current];
+      mainVideo.src = t.dataset.src;
+      mainVideo.play();
+      titleDisplay.textContent = t.dataset.title;
+      currentNum.textContent = String(current + 1).padStart(2, '0');
+      thumbs.forEach((th, idx) => th.classList.toggle('active', idx === current));
+    }
+
+    thumbs.forEach((t, i) => t.addEventListener('click', () => goTo(i)));
+    document.getElementById('v-next').addEventListener('click', () => goTo(current + 1));
+    document.getElementById('v-prev').addEventListener('click', () => goTo(current - 1));
+
+    // Auto-advance when video ends
+    mainVideo.addEventListener('ended', () => goTo(current + 1));
+
+    // Mute toggle
+    muteBtn.addEventListener('click', () => {
+      mainVideo.muted = !mainVideo.muted;
+      muteIcon.textContent = mainVideo.muted ? '🔇' : '🔊';
+    });
+  </script>
+</body>
+</html>
