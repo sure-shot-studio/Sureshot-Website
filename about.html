@@ -1,12 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About â€” Sure Shot Studio</title>
+  <title>About &mdash; Sure Shot Studio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<svg style="display:none"><defs>
+  <filter id="distress" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="4" seed="5" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
 
   <header>
     <a class="logo" href="index.html"><img src="logo-mark.svg" alt="" class="logo-mark"> SURE SHOT<span>.</span></a>
@@ -24,8 +31,8 @@
     <div class="about-inner">
       <div class="about-text">
         <h2>SURE SHOT<span>.</span></h2>
-        <p>Ren F is a Miami-based photographer and founder of Sure Shot Studio LLC. Shooting since 2013 with Sony and Canon, Ren documents the intersection of hip-hop culture, live performance, street life, and toy collecting â€” from front-row concert pits to intimate studio setups.</p>
-        <p>Whether it&rsquo;s a Wu-Tang show, a vinyl toy on a black background, or a Tron arcade cabinet glowing in the dark â€” every frame is a Sure Shot.</p>
+        <p>Ren F is a Miami-based photographer and founder of Sure Shot Studio LLC. Shooting since 2013 with Sony and Canon, Ren documents the intersection of hip-hop culture, live performance, street life, and toy collecting &mdash; from front-row concert pits to intimate studio setups.</p>
+        <p>Whether it&rsquo;s a Wu-Tang show, a vinyl toy on a black background, or a Tron arcade cabinet glowing in the dark &mdash; every frame is a Sure Shot.</p>
       </div>
       <div class="about-contact">
         <h3>GET IN TOUCH</h3>
@@ -70,5 +77,3 @@
   <script src="effects.js"></script>
 </body>
 </html>
-
-

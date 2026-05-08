@@ -11,7 +11,10 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
 body {
   background: var(--bg);
@@ -690,6 +693,7 @@ nav a:hover, nav a.active { color: var(--accent); }
 .about-section {
   padding: 5rem 2.5rem;
   border-bottom: 1px solid var(--border);
+  overflow-x: hidden;
 }
 
 .about-inner {
@@ -697,6 +701,7 @@ nav a:hover, nav a.active { color: var(--accent); }
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   max-width: 1000px;
+  width: 100%;
 }
 
 .about-text h2 {
@@ -712,6 +717,9 @@ nav a:hover, nav a.active { color: var(--accent); }
   font-size: 0.9rem;
   line-height: 1.8;
   margin-bottom: 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .about-contact h3 {
