@@ -21,6 +21,76 @@ body {
   cursor: url('cursor.svg') 18 18, crosshair;
 }
 
+/* ── LOGO MARK ── */
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+/* ── HERO GRID OVERLAY (Kill Bill energy) ── */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,80,255,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,80,255,0.055) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+  z-index: 0;
+  animation: grid-drift 24s linear infinite;
+}
+@keyframes grid-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 52px 52px; }
+}
+
+/* ── DISTRESSED TEXT FILTER ── */
+.distressed { filter: url(#distress); }
+
+/* ── THUMBNAIL PREVIEW WINDOW ── */
+.thumb-preview {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  width: 220px;
+  aspect-ratio: 1;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  transform: translateY(6px);
+  z-index: 50;
+  box-shadow: 0 0 24px rgba(170,255,0,0.2);
+}
+.thumb-preview.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.thumb-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.thumb-preview-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.75);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 0.35rem 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
 /* ── FILM GRAIN ── */
 body::after {
   content: '';

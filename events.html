@@ -8,8 +8,18 @@
 </head>
 <body>
 
+<svg style="display:none"><defs>
+  <filter id="distress" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="4" seed="5" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
   <header>
-    <a class="logo" href="index.html">SURE SHOT<span>.</span></a>
+    <a class="logo" href="index.html">
+      <img src="logo-mark.svg" alt="" class="logo-mark">
+      SURE SHOT<span>.</span>
+    </a>
     <nav>
       <a href="concerts.html">Concerts</a>
       <a href="events.html" class="active">Events</a>
@@ -20,22 +30,26 @@
   </header>
 
   <section class="player reveal" id="events">
-    <div class="player-label">EVENTS</div>
+    <div class="player-label distressed">EVENTS</div>
     <div class="player-stage">
-      <img class="player-main" src="ig/events/01_miami_editorial.jpg" alt="">
+      <img class="player-main" src="ig/events/01_miami_editorial.jpg" alt="" style="object-position:center">
       <div class="player-ui">
         <button class="p-btn p-prev">&#x2039;</button>
         <span class="p-counter">01 <em>/</em> 06</span>
         <button class="p-btn p-next">&#x203A;</button>
       </div>
     </div>
-    <div class="player-thumbs">
-      <div class="thumb active" data-src="ig/events/01_miami_editorial.jpg"><img src="ig/events/01_miami_editorial.jpg" alt=""></div>
-      <div class="thumb"        data-src="ig/events/02_brooklyn_bw.jpg">    <img src="ig/events/02_brooklyn_bw.jpg"     alt=""></div>
-      <div class="thumb"        data-src="ig/events/03_djcrew.jpg">          <img src="ig/events/03_djcrew.jpg"          alt=""></div>
-      <div class="thumb"        data-src="ig/events/04_filmset.jpg">         <img src="ig/events/04_filmset.jpg"         alt=""></div>
-      <div class="thumb"        data-src="ig/events/05_miami_night.jpg">     <img src="ig/events/05_miami_night.jpg"     alt=""></div>
-      <div class="thumb"        data-src="ig/events/06_keybiscayne.jpg">     <img src="ig/events/06_keybiscayne.jpg"     alt=""></div>
+    <div class="player-thumbs" style="position:relative">
+      <div class="thumb active" data-src="ig/events/01_miami_editorial.jpg" data-position="center"     data-label="Miami Editorial">  <img src="ig/events/01_miami_editorial.jpg" alt=""></div>
+      <div class="thumb"        data-src="ig/events/02_brooklyn_bw.jpg"     data-position="center"     data-label="Brooklyn BW">       <img src="ig/events/02_brooklyn_bw.jpg"     alt=""></div>
+      <div class="thumb"        data-src="ig/events/03_djcrew.jpg"           data-position="top center" data-label="DJ Crew">           <img src="ig/events/03_djcrew.jpg"           alt=""></div>
+      <div class="thumb"        data-src="ig/events/04_filmset.jpg"          data-position="center"     data-label="Film Set">          <img src="ig/events/04_filmset.jpg"          alt=""></div>
+      <div class="thumb"        data-src="ig/events/05_miami_night.jpg"      data-position="center"     data-label="Miami Night">       <img src="ig/events/05_miami_night.jpg"      alt=""></div>
+      <div class="thumb"        data-src="ig/events/06_keybiscayne.jpg"      data-position="center"     data-label="Key Biscayne">      <img src="ig/events/06_keybiscayne.jpg"      alt=""></div>
+      <div class="thumb-preview" id="thumb-preview">
+        <img src="" alt="">
+        <div class="thumb-preview-label" id="preview-label"></div>
+      </div>
     </div>
   </section>
 
@@ -57,28 +71,52 @@
   </div>
 
   <footer>
-    <a class="logo" href="index.html">SURE SHOT<span>.</span></a>
+    <a class="logo" href="index.html"><img src="logo-mark.svg" alt="" class="logo-mark"> SURE SHOT<span>.</span></a>
     <p>&copy; 2026 Sure Shot Studio LLC</p>
   </footer>
 
   <script src="effects.js"></script>
   <script>
-    const player = document.querySelector('.player');
+    const player  = document.querySelector('.player');
     const mainImg = player.querySelector('.player-main');
     const thumbs  = Array.from(player.querySelectorAll('.thumb'));
     const counter = player.querySelector('.p-counter');
+    const preview = document.getElementById('thumb-preview');
+    const previewImg   = preview.querySelector('img');
+    const previewLabel = document.getElementById('preview-label');
     let current = 0;
 
     function goTo(i) {
       current = (i + thumbs.length) % thumbs.length;
+      const t = thumbs[current];
       mainImg.style.opacity = '0';
-      setTimeout(() => { mainImg.src = thumbs[current].dataset.src; mainImg.style.opacity = '1'; }, 180);
+      setTimeout(() => {
+        mainImg.src = t.dataset.src;
+        mainImg.style.objectPosition = t.dataset.position || 'center';
+        mainImg.style.opacity = '1';
+      }, 180);
       thumbs.forEach((t, idx) => t.classList.toggle('active', idx === current));
       counter.innerHTML = String(current+1).padStart(2,'0') + ' <em>/</em> 06';
     }
+
+    thumbs.forEach((t, i) => {
+      t.addEventListener('mouseenter', () => {
+        previewImg.src = t.dataset.src;
+        previewImg.style.objectPosition = t.dataset.position || 'center';
+        previewLabel.textContent = t.dataset.label || '';
+        const tr = t.getBoundingClientRect();
+        const pr = player.querySelector('.player-thumbs').getBoundingClientRect();
+        let left = (tr.left - pr.left) + (tr.width / 2) - 110;
+        left = Math.max(0, Math.min(left, pr.width - 220));
+        preview.style.left = left + 'px';
+        preview.classList.add('show');
+      });
+      t.addEventListener('mouseleave', () => preview.classList.remove('show'));
+      t.addEventListener('click', () => goTo(i));
+    });
+
     player.querySelector('.p-next').addEventListener('click', () => goTo(current + 1));
     player.querySelector('.p-prev').addEventListener('click', () => goTo(current - 1));
-    thumbs.forEach((t, i) => t.addEventListener('click', () => goTo(i)));
   </script>
 </body>
 </html>
