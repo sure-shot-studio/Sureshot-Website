@@ -113,7 +113,7 @@
         preview.classList.add('show');
       });
       t.addEventListener('mouseleave', () => preview.classList.remove('show'));
-      t.addEventListener('click', () => goTo(i));
+      t.addEventListener('click', () => { goTo(i); lbOpen(t.dataset.src, t.dataset.label || '', thumbs, i); });
     });
 
     player.querySelector('.p-next').addEventListener('click', () => goTo(current + 1));
